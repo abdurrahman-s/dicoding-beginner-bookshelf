@@ -26,11 +26,23 @@ const addBookHandler = (request, h) => {
   }
 
   const id = nanoid(16)
+  const finished = pageCount === readPage
   const insertedAt = new Date().toISOString()
   const updatedAt = insertedAt
 
   const newBook = {
-    id, name, year, author, summary, publisher, pageCount, readPage, reading, insertedAt, updatedAt,
+    id,
+    name,
+    year,
+    author,
+    summary,
+    publisher,
+    pageCount,
+    readPage,
+    finished,
+    reading,
+    insertedAt,
+    updatedAt,
   }
 
   books.push(newBook)
@@ -112,6 +124,7 @@ const editBookByIdHandler = (request, h) => {
   }
 
   const updatedAt = new Date().toISOString()
+  const finished = pageCount === readPage
 
   const index = books.findIndex((book) => book.id === bookId)
 
@@ -125,6 +138,7 @@ const editBookByIdHandler = (request, h) => {
       publisher,
       pageCount,
       readPage,
+      finished,
       reading,
       updatedAt,
     }
