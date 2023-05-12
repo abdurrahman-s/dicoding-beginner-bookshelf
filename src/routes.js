@@ -1,3 +1,4 @@
+const Joi = require('@hapi/joi') // eslint-disable-line import/no-extraneous-dependencies
 const {
   addBookHandler,
   getAllBooksHandler,
@@ -16,6 +17,15 @@ const routes = [
     method: 'GET',
     path: '/books',
     handler: getAllBooksHandler,
+    options: {
+      validate: {
+        query: Joi.object({
+          name: Joi.string(),
+          reading: Joi.number().integer(),
+          finished: Joi.number().integer(),
+        }),
+      },
+    },
   },
   {
     method: 'GET',
